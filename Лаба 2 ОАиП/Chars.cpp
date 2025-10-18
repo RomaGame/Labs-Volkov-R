@@ -4,7 +4,7 @@
 int main() {
 	setlocale(LC_ALL, "rus");
 	char str[100];
-	std::cout << "Ââåäèòå ñòðîêó:";
+	std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã±Ã²Ã°Ã®ÃªÃ³:";
 	std::cin.getline(str,100);
 	
 	char *ptr = str;
@@ -28,7 +28,7 @@ int main() {
 		}
 		if (cur_len > 1) {
 			ptr--;
-			if (sec == *ptr) {
+			if ((sec == *ptr) or (int(sec) - int(*ptr) == 32) or (int(sec) - int(*ptr) == -32)) {
 				count_q++;
 			}
 			ptr++;
@@ -47,9 +47,9 @@ int main() {
 		}
 		ptr--;
 	}
-	std::cout << "Ñëîâ, îêàí÷èâàþùèõñÿ íà áóêâó b:" << count_b << std::endl;
-	std::cout << "Äëèííà ñàìîãî äëèííîãî ñëîâà:" << max_len << std::endl;
-	std::cout << "Áóêâ d â ïîñëåäíåì ñëîâå:" << count_d << std::endl;
+	std::cout << "Ã‘Ã«Ã®Ã¢, Ã®ÃªÃ Ã­Ã·Ã¨Ã¢Ã Ã¾Ã¹Ã¨ÃµÃ±Ã¿ Ã­Ã  Ã¡Ã³ÃªÃ¢Ã³ b:" << count_b << std::endl;
+	std::cout << "Ã„Ã«Ã¨Ã­Ã­Ã  Ã±Ã Ã¬Ã®Ã£Ã® Ã¤Ã«Ã¨Ã­Ã­Ã®Ã£Ã® Ã±Ã«Ã®Ã¢Ã :" << max_len << std::endl;
+	std::cout << "ÃÃ³ÃªÃ¢ d Ã¢ Ã¯Ã®Ã±Ã«Ã¥Ã¤Ã­Ã¥Ã¬ Ã±Ã«Ã®Ã¢Ã¥:" << count_d << std::endl;
 	char *ptr1 = str;
 	while (*ptr1 != '\0') {
 		if (('a' <= *ptr1) and (*ptr1 <= 'z')) {
@@ -57,7 +57,8 @@ int main() {
 		}
 		ptr1++;
 	}
-	std::cout << "Ñòðîêà êàïñîì:" << str;
-	std::cout << "Ñëîâ ñ ñîâïàäàþùèìè âòîðûì è ïðåäïîñëåäíèì ñèìâîëîì:" << count_q << std::endl;
+	std::cout << "Ã‘Ã²Ã°Ã®ÃªÃ  ÃªÃ Ã¯Ã±Ã®Ã¬:" << str;
+	std::cout << "Ã‘Ã«Ã®Ã¢ Ã± Ã±Ã®Ã¢Ã¯Ã Ã¤Ã Ã¾Ã¹Ã¨Ã¬Ã¨ Ã¢Ã²Ã®Ã°Ã»Ã¬ Ã¨ Ã¯Ã°Ã¥Ã¤Ã¯Ã®Ã±Ã«Ã¥Ã¤Ã­Ã¨Ã¬ Ã±Ã¨Ã¬Ã¢Ã®Ã«Ã®Ã¬:" << count_q << std::endl;
 	return 0;
+
 }
