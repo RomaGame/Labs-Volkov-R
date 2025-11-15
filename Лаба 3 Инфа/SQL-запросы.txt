@@ -1,0 +1,37 @@
+SQL-запрос для получения списка всех задач с их приоритетом и
+сроками выполнения:
+SELECT title,priority,due_date FROM tasks;
+
+SQL-запрос для получения всех задач определенного
+пользователя:
+SELECT title,name
+FROM task_assignments
+JOIN tasks ON tasks.id = task_assignments.task_id
+JOIN users ON users.id = task_assignments.user_id WHERE name = '*Имя пользователя*';
+
+SQL-запрос для поиска задач с высоким приоритетом, срок
+выполнения которых истекает в ближайшие 7 дней:
+SELECT title,priority,due_date FROM tasks WHERE priority = 'Высокий' AND due_date < NOW() + INTERVAL '7 day' AND due_date >= NOW();
+
+SQL-запрос для получения количества задач в каждом статусе:
+SELECT
+COUNT(CASE WHEN priority = 'Высокий' THEN 1 ELSE NULL END) AS Высокий,
+COUNT(CASE WHEN priority = 'Средний' THEN 1 ELSE NULL END) AS Средний,
+COUNT(CASE WHEN priority = 'Низкий' THEN 1 ELSE NULL END) AS Низкий
+FROM tasks;
+
+Отчет о задачах, которые просрочены, и пользователей,
+ответственных за их выполнение:
+SELECT title,due_date,name
+FROM task_assignments
+JOIN users ON users.id = task_assignments.user_id
+JOIN tasks ON tasks.id = task_assignments.task_id WHERE due_date < NOW();
+
+Запрос для обновления статуса задачи по её индетификатору:
+UPDATE tasks
+SET status = '*Статус*'
+WHERE id = *Идентификатор*;
+
+Удаление задачи из списка задач, при этом проверяя,
+что удаление не затрагивает другие данные
+DELETE FROM tasks WHERE NOT EXISTS (SELECT 1 FROM task_assignments WHERE tasks.id = task_assignments.task_id) AND id = *Идентификатор*;
