@@ -1,0 +1,3 @@
+SELECT average_grade
+FROM student_avg_grades
+WHERE student_id = 3;

@@ -1,0 +1,15 @@
+BEGIN;
+IF EXISTS (
+	SELECT 1 FROM attendance 
+	WHERE student = 1 AND date_attended = '2025-12-11'
+) THEN
+DO UPDATE SET 
+status = FALSE,
+
+ELSE
+INSERT INTO attendance (student_id, date_attended, status)
+VALUES (1, '2025-12-11', FALSE)
+
+END IF;
+
+COMMIT;

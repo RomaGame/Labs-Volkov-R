@@ -1,0 +1,23 @@
+WITH student_info AS (
+    SELECT group_number, student_id
+    FROM students
+    WHERE student_id = 4
+)
+(
+    SELECT s.*
+    FROM students s
+    JOIN student_info si ON s.group_number = si.group_number
+    WHERE s.student_id < si.student_id
+    ORDER BY s.student_id DESC
+    LIMIT 2
+)
+UNION ALL
+(
+    SELECT s.*
+    FROM students s
+    JOIN student_info si ON s.group_number = si.group_number
+    WHERE s.student_id > si.student_id
+    ORDER BY s.student_id ASC
+    LIMIT 3
+)
+ORDER BY student_id;

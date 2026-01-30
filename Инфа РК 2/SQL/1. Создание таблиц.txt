@@ -1,0 +1,28 @@
+CREATE TABLE students (
+	student_id SERIAL PRIMARY KEY,
+	full_name VARCHAR, 
+	group_number INT);
+CREATE TABLE subjects (
+	subject_id SERIAL PRIMARY KEY,
+	subject_name VARCHAR);
+CREATE TABLE grades (
+	grade_id SERIAL PRIMARY KEY, 
+	student_id INT, 
+	subject_id INT, 
+	grade INT,
+	FOREIGN KEY (student_id) REFERENCES students(student_id),
+	FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+);
+CREATE TABLE attendance (
+	attendance_id SERIAL PRIMARY KEY, 
+	student_id INT, 
+	date_attended DATE, 
+	status CHAR(10),
+	FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+CREATE TABLE notes (
+	note_id SERIAL PRIMARY KEY,
+	student_id INT,
+	note_text TEXT,
+	FOREIGN KEY (student_id) REFERENCES students(student_id) 
+);

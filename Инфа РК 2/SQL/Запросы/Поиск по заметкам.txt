@@ -1,0 +1,7 @@
+SELECT 
+    note_id,
+    student_id,
+    note_text
+FROM notes
+WHERE to_tsvector('russian', note_text) @@ to_tsquery('russian', 'Информатика')
+ORDER BY note_id DESC;
