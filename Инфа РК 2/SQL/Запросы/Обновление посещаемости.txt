@@ -8,8 +8,9 @@ status = FALSE,
 
 ELSE
 INSERT INTO attendance (student_id, date_attended, status)
-VALUES (1, '2025-12-11', FALSE)
+VALUES (1, '2025-10-25', FALSE)
 
 END IF;
+
 
 COMMIT;
